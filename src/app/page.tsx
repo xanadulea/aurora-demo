@@ -44,56 +44,71 @@ export default function Home() {
       {/* Nav */}
       <nav className="border-b border-neutral-100 px-6 py-4 flex items-center justify-between max-w-6xl mx-auto">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-xs font-bold">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-xs font-bold">
             A
           </div>
-          <span className="font-medium text-neutral-800 text-sm">Aurora Health</span>
+          <span className="font-medium text-neutral-800">Aurora Health</span>
         </div>
-        <div className="hidden md:flex gap-6 text-sm text-neutral-500">
-          <span>Patient Portal</span>
-          <span>For Providers</span>
-          <span>About</span>
+        <div className="hidden md:flex items-center gap-8 text-sm text-neutral-500">
+          <a href="#" className="hover:text-neutral-800 transition-colors">Product</a>
+          <a href="#" className="hover:text-neutral-800 transition-colors">For Providers</a>
+          <a href="#" className="hover:text-neutral-800 transition-colors">About</a>
+          <button className="px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 transition-colors">
+            Get started
+          </button>
         </div>
       </nav>
 
-      {/* Hero — Case Study Intro */}
-      <section className="px-6 py-20 max-w-3xl mx-auto text-center">
-        <span className="text-xs font-medium text-blue-500 uppercase tracking-widest">
-          Case Study
-        </span>
-        <h1 className="text-4xl md:text-5xl font-light text-neutral-900 mt-4 mb-6 leading-tight">
-          How Aurora Health cut patient onboarding from{" "}
-          <span className="text-blue-500">14 steps to 3</span>
+      {/* Hero */}
+      <section className="px-6 pt-24 pb-16 max-w-3xl mx-auto text-center">
+        <h1 className="text-4xl md:text-6xl font-light text-neutral-900 leading-tight tracking-tight">
+          Patient onboarding
+          <br />
+          <span className="text-blue-500">done right</span>
         </h1>
-        <p className="text-lg text-neutral-500 leading-relaxed">
-          I rebuilt Aurora&apos;s patient intake flow from the ground up. The
-          old system had a 62% drop-off rate. The new one takes under 2 minutes
-          and integrates directly with their Ruby on Rails backend.
+        <p className="text-lg text-neutral-500 mt-6 max-w-xl mx-auto leading-relaxed">
+          From 14 paper forms to a single 3-step digital flow. Patients
+          complete onboarding in under 2 minutes — and actually finish it.
         </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <span className="text-xs px-3 py-1 rounded-full bg-blue-50 text-blue-600">
-            Next.js
-          </span>
-          <span className="text-xs px-3 py-1 rounded-full bg-blue-50 text-blue-600">
-            Framer Motion
-          </span>
-          <span className="text-xs px-3 py-1 rounded-full bg-blue-50 text-blue-600">
-            REST API Integration
-          </span>
-          <span className="text-xs px-3 py-1 rounded-full bg-blue-50 text-blue-600">
-            6-week delivery
-          </span>
+        <div className="mt-8 flex justify-center gap-4">
+          <button
+            onClick={() => {
+              setDone(false);
+              setStep(0);
+              document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="px-6 py-3 bg-blue-500 text-white rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors"
+          >
+            Try the demo
+          </button>
+          <button className="px-6 py-3 border border-neutral-200 text-neutral-700 rounded-lg text-sm font-medium hover:bg-neutral-50 transition-colors">
+            Learn more
+          </button>
+        </div>
+        <div className="mt-24 grid grid-cols-3 gap-8 text-center">
+          <div>
+            <div className="text-3xl font-light text-blue-500">62%</div>
+            <p className="text-xs text-neutral-400 mt-1">Drop-off reduction</p>
+          </div>
+          <div>
+            <div className="text-3xl font-light text-blue-500">2 min</div>
+            <p className="text-xs text-neutral-400 mt-1">Avg. completion</p>
+          </div>
+          <div>
+            <div className="text-3xl font-light text-blue-500">4.9</div>
+            <p className="text-xs text-neutral-400 mt-1">Patient rating</p>
+          </div>
         </div>
       </section>
 
-      {/* Live Demo Section */}
-      <section className="border-t border-neutral-100 bg-neutral-50">
-        <div className="max-w-lg mx-auto px-6 py-16">
-          <p className="text-xs text-neutral-400 uppercase tracking-widest mb-2 text-center">
-            Live Demo
+      {/* Live Demo */}
+      <section id="demo" className="border-t border-neutral-100 bg-neutral-50">
+        <div className="max-w-lg mx-auto px-6 py-20">
+          <p className="text-xs text-neutral-400 uppercase tracking-widest text-center mb-2">
+            Interactive Demo
           </p>
-          <p className="text-sm text-neutral-500 text-center mb-10">
-            Try the actual onboarding flow I delivered to Aurora.
+          <p className="text-sm text-neutral-500 text-center mb-12">
+            Experience the onboarding flow yourself.
           </p>
 
           {done ? (
@@ -106,10 +121,10 @@ export default function Home() {
                 ✓
               </div>
               <h2 className="text-xl font-medium text-neutral-800 mb-2">
-                Onboarding complete
+                All done
               </h2>
               <p className="text-neutral-500 text-sm">
-                3 steps. Under 2 minutes. That&apos;s the difference.
+                That was 3 steps. Traditional onboarding takes 14.
               </p>
               <button
                 onClick={() => {
@@ -123,12 +138,9 @@ export default function Home() {
             </motion.div>
           ) : (
             <>
-              {/* Progress bar */}
               <div className="mb-8">
                 <div className="flex justify-between text-sm text-neutral-500 mb-2">
-                  <span>
-                    Step {step + 1} of {steps.length}
-                  </span>
+                  <span>Step {step + 1} of {steps.length}</span>
                   <span>{steps[step].title}</span>
                 </div>
                 <div className="h-1.5 bg-neutral-200 rounded-full overflow-hidden">
@@ -140,7 +152,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Card */}
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={step}
@@ -170,7 +181,7 @@ export default function Home() {
 
                   {step === 2 && (
                     <div className="bg-blue-50 rounded-lg p-4 text-sm text-blue-800 mb-6">
-                      ✓ By continuing, you confirm all information is accurate.
+                      ✓ All information will be securely stored and encrypted.
                     </div>
                   )}
 
@@ -197,35 +208,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Results */}
-      <section className="px-6 py-20 max-w-4xl mx-auto">
-        <h2 className="text-2xl font-light text-neutral-400 text-center mb-12">
-          Results
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div>
-            <div className="text-4xl font-light text-blue-500 mb-2">62%</div>
-            <p className="text-sm text-neutral-500">Reduction in drop-off</p>
-          </div>
-          <div>
-            <div className="text-4xl font-light text-blue-500 mb-2">2 min</div>
-            <p className="text-sm text-neutral-500">Average completion time</p>
-          </div>
-          <div>
-            <div className="text-4xl font-light text-blue-500 mb-2">4.9</div>
-            <p className="text-sm text-neutral-500">Patient satisfaction score</p>
-          </div>
-        </div>
-      </section>
-
       {/* Quote */}
       <section className="border-t border-neutral-100 px-6 py-20">
         <blockquote className="max-w-2xl mx-auto text-center">
-          <p className="text-lg text-neutral-600 italic leading-relaxed">
-            &ldquo;The new onboarding flow transformed our patient experience. We
-            went from losing over half our signups to completing nearly every
-            one. The attention to detail in the animations and validation made
-            it feel less like a medical form and more like a modern app.&rdquo;
+          <p className="text-lg text-neutral-600 leading-relaxed">
+            &ldquo;The new onboarding experience has been transformational. Our
+            patients complete intake before they even arrive at the office. It
+            feels less like paperwork and more like a modern product.&rdquo;
           </p>
           <footer className="mt-6">
             <p className="text-sm font-medium text-neutral-800">Dr. Sarah Chen</p>
@@ -236,15 +225,8 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-neutral-100 px-6 py-8 text-center text-xs text-neutral-400">
-        Case study by{" "}
-        <a
-          href="https://xanadulea-portfolio.vercel.app"
-          className="underline hover:text-neutral-600 transition-colors"
-        >
-          Xanadu Lea
-        </a>{" "}
-        — freelance developer. This is a portfolio piece. Aurora Health is a
-        fictional client.
+        © 2026 Aurora Health. All rights reserved.<br />
+        <span className="text-neutral-300">Built by Xanadu Lea</span>
       </footer>
     </div>
   );
